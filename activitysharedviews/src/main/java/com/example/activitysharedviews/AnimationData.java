@@ -22,11 +22,13 @@ public class AnimationData implements Serializable {
     private int mDuration;
     private int mViewId;
     private int mInterpolator;
+    private AlphaData mAlphaData;
 
-    public AnimationData(int viewId, int duration, int interpolator) {
+    public AnimationData(int viewId, int duration, int interpolator, AlphaData alphaData) {
         this.mViewId = viewId;
         this.mDuration = duration;
         this.mInterpolator = interpolator;
+        this.mAlphaData = alphaData;
     }
 
     public int getViewId() {
@@ -38,4 +40,6 @@ public class AnimationData implements Serializable {
     }
 
     public int getInterpolator() { return mInterpolator; }
+
+    public AlphaData getAlphaData() { return mAlphaData; }
 }

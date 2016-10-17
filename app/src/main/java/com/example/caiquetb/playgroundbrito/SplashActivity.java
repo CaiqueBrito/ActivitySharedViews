@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.example.activitysharedviews.ActivityTransition;
+import com.example.activitysharedviews.AlphaData;
 import com.example.activitysharedviews.AnimationData;
 import com.example.activitysharedviews.InterpolatorIdentifier;
 
@@ -21,9 +22,25 @@ public class SplashActivity extends AppCompatActivity {
         final Intent intent = new Intent(this, MainActivity.class);
 
         final ArrayList<AnimationData> animationDatas = new ArrayList<>();
-        animationDatas.add(new AnimationData(R.id.imageTransition, 1000, InterpolatorIdentifier.ACCELERATE_DECELERATE));
-        animationDatas.add(new AnimationData(R.id.backgroundTornado, 1000, InterpolatorIdentifier.DECELERATE));
-        animationDatas.add(new AnimationData(R.id.backgroundOvershoot, 1000, InterpolatorIdentifier.OVERSHOOT));
+
+        animationDatas.add(
+                new AnimationData(
+                        R.id.imageTransition,
+                        1000,
+                        InterpolatorIdentifier.ACCELERATE_DECELERATE,
+                        null));
+        animationDatas.add(
+                new AnimationData(
+                        R.id.backgroundTornado,
+                        1000,
+                        InterpolatorIdentifier.DECELERATE,
+                        new AlphaData(1, 0.1f)));
+        animationDatas.add(
+                new AnimationData(
+                        R.id.backgroundOvershoot,
+                        1000,
+                        InterpolatorIdentifier.OVERSHOOT,
+                        null));
 
         findViewById(R.id.imageTransition).setOnClickListener(new View.OnClickListener() {
             @Override

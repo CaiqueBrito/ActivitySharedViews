@@ -131,11 +131,20 @@ public class ActivityTransition {
                         view.setTranslationX(mLeftDelta);
                         view.setTranslationY(mTopDelta);
 
-                        view.animate()
-                                .setDuration(animationData.getDuration())
-                                .scaleX(1).scaleY(1)
-                                .translationX(0).translationY(0)
-                                .setInterpolator(makeInterpolator(animationData.getInterpolator()));
+                        if (animationData.getAlphaData() != null) {
+                            view.animate()
+                                    .alphaBy(animationData.getAlphaData().getAlphaBy())
+                                    .alpha(animationData.getAlphaData().getAlphaTo())
+                                    .setDuration(animationData.getDuration())
+                                    .scaleX(1).scaleY(1)
+                                    .translationX(0).translationY(0)
+                                    .setInterpolator(makeInterpolator(animationData.getInterpolator()));
+                        } else
+                            view.animate()
+                                    .setDuration(animationData.getDuration())
+                                    .scaleX(1).scaleY(1)
+                                    .translationX(0).translationY(0)
+                                    .setInterpolator(makeInterpolator(animationData.getInterpolator()));
 
                         return true;
                     }
@@ -186,11 +195,20 @@ public class ActivityTransition {
                 float mWidthScale = (float) bundledWidth / view.getWidth();
                 float mHeigthScale = (float) bundledHeight / view.getHeight();
 
-                view.animate()
-                        .setDuration(animationData.getDuration())
-                        .scaleX(mWidthScale).scaleY(mHeigthScale)
-                        .translationX(mLeftDelta).translationY(mTopDelta)
-                        .setInterpolator(makeInterpolator(animationData.getInterpolator()));
+                if (animationData.getAlphaData() != null) {
+                    view.animate()
+                            .alphaBy(animationData.getAlphaData().getAlphaTo())
+                            .alpha(animationData.getAlphaData().getAlphaBy())
+                            .setDuration(animationData.getDuration())
+                            .scaleX(mWidthScale).scaleY(mHeigthScale)
+                            .translationX(mLeftDelta).translationY(mTopDelta)
+                            .setInterpolator(makeInterpolator(animationData.getInterpolator()));
+                } else
+                    view.animate()
+                            .setDuration(animationData.getDuration())
+                            .scaleX(mWidthScale).scaleY(mHeigthScale)
+                            .translationX(mLeftDelta).translationY(mTopDelta)
+                            .setInterpolator(makeInterpolator(animationData.getInterpolator()));
             }
         }
 

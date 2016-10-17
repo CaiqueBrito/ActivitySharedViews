@@ -20,8 +20,6 @@ public class MainActivity extends AppCompatActivity {
                 //do things after the most duration of animation ends.
             }
         });
-
-
     }
 
     @Override
