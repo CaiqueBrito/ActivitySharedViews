@@ -32,9 +32,9 @@ public class SplashActivity extends AppCompatActivity {
         animationDatas.add(
                 new AnimationData(
                         R.id.backgroundTornado,
-                        1000,
+                        1300,
                         InterpolatorIdentifier.DECELERATE,
-                        new AlphaData(1, 0.1f)));
+                        new AlphaData(1, 0.6f)));
         animationDatas.add(
                 new AnimationData(
                         R.id.backgroundOvershoot,

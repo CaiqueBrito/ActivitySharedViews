@@ -6,11 +6,12 @@
     android:layout_height="match_parent"
     tools:context="com.example.caiquetb.playgroundbrito.SplashActivity">
 
-    <View
+    <RelativeLayout
         android:id="@+id/backgroundTornado"
         android:background="#FF0000"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+    </RelativeLayout>
 
     <View
         android:layout_alignParentBottom="true"
