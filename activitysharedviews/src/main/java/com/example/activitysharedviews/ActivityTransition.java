@@ -87,14 +87,22 @@ public class ActivityTransition {
     /**
      * This method will recover all view writed on the Bundle passed by the origin activity
      * @param activity The activity which will recover the view on Bundle and start the animations of each view.
-     * @param unbundleViewCallback The callback which will notify the activity when all animations get started
+     * @param unbundleViewCallback The callback which will notify the activity when the most animation end.
      */
     public static void runEnterAnimation(final Activity activity, @Nullable final UnbundleViewCallback unbundleViewCallback) {
 
         Bundle bundle = activity.getIntent().getExtras();
         ArrayList<AnimationData> animationDatas = (ArrayList<AnimationData>) bundle.getSerializable("animationDatas");
 
+        int enterDelay = 0;
+
         if (animationDatas != null)
+            if (unbundleViewCallback != null)
+                for (AnimationData animationData : animationDatas) {
+                    if (enterDelay < animationData.getDuration())
+                        enterDelay = animationData.getDuration();
+                }
+
             for(final AnimationData animationData : animationDatas) {
                 int viewId = animationData.getViewId();
                 final View view = activity.findViewById(viewId);
@@ -135,7 +143,12 @@ public class ActivityTransition {
             }
 
         if (unbundleViewCallback != null)
-            unbundleViewCallback.viewUnbundled();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    unbundleViewCallback.viewUnbundled();
+                }
+            }, enterDelay);
     }
 
     /**
@@ -151,13 +164,11 @@ public class ActivityTransition {
         int exitDelay = 0;
 
         if (animationDatas != null) {
-            for (AnimationData animationData : animationDatas) {
-                if (exitDelay == 0)
-                    exitDelay = animationData.getDuration();
-                else
+            if (unbundleViewCallback != null)
+                for (AnimationData animationData : animationDatas) {
                     if (exitDelay < animationData.getDuration())
                         exitDelay = animationData.getDuration();
-            }
+                }
 
             for (AnimationData animationData : animationDatas) {
                 int viewId = animationData.getViewId();

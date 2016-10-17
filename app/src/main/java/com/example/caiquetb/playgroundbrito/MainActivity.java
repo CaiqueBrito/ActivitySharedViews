@@ -17,10 +17,11 @@ public class MainActivity extends AppCompatActivity {
         ActivityTransition.runEnterAnimation(this, new ActivityTransition.UnbundleViewCallback() {
             @Override
             public void viewUnbundled() {
-                //Doing another things in parallel of activity transition animation,
-                //like alpha on background for example
+                //do things after the most duration of animation ends.
             }
         });
+
+
     }
 
     @Override
