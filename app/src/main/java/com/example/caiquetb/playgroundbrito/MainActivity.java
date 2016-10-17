@@ -1,5 +1,6 @@
 package com.example.caiquetb.playgroundbrito;
 
+import android.animation.Animator;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.animation.DecelerateInterpolator;
@@ -18,18 +19,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         textViewAnimated = (TextView) findViewById(R.id.textview_animated);
-
         textViewAnimated.setAlpha(0);
+
+        //just "frescura"
+        backPressed = true;
 
         ActivityTransition.runEnterAnimation(this, new ActivityTransition.UnbundleViewCallback() {
             @Override
             public void viewUnbundled() {
+
                 textViewAnimated.setTranslationX(textViewAnimated.getWidth());
                 textViewAnimated.animate().
                         setDuration(500).
                         alpha(1).
                         translationX(0).
-                        setInterpolator(new DecelerateInterpolator());
+                        setInterpolator(new DecelerateInterpolator()).
+                        setListener(preventBackPressedListener);
             }
         });
     }
@@ -48,4 +53,26 @@ public class MainActivity extends AppCompatActivity {
             });
         }
     }
+
+    private Animator.AnimatorListener preventBackPressedListener = new Animator.AnimatorListener() {
+        @Override
+        public void onAnimationStart(Animator animation) {
+
+        }
+
+        @Override
+        public void onAnimationEnd(Animator animation) {
+            backPressed = false;
+        }
+
+        @Override
+        public void onAnimationCancel(Animator animation) {
+
+        }
+
+        @Override
+        public void onAnimationRepeat(Animator animation) {
+
+        }
+    };
 }
