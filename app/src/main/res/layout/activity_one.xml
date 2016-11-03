@@ -8,7 +8,7 @@
 
     <RelativeLayout
         android:id="@+id/backgroundTornado"
-        android:background="#FF0000"
+        android:background="#000000"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </RelativeLayout>
@@ -17,7 +17,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:id="@+id/backgroundOvershoot"
-        android:background="#FFFF00"
+        android:background="#8800FF"
         android:layout_width="match_parent"
         android:layout_height="50dp"/>
 

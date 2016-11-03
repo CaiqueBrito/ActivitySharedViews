@@ -1,4 +1,4 @@
-package com.example.caiquetb.playgroundbrito;
+package com.example.caiquetb.sample;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,14 +12,16 @@ import com.example.activitysharedviews.InterpolatorIdentifier;
 
 import java.util.ArrayList;
 
-public class SplashActivity extends AppCompatActivity {
+public class OneActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
+        setContentView(R.layout.activity_one);
 
-        final Intent intent = new Intent(this, MainActivity.class);
+        getSupportActionBar().setTitle("Activity One");
+
+        final Intent intent = new Intent(this, TwoActivity.class);
 
         final ArrayList<AnimationData> animationDatas = new ArrayList<>();
 
@@ -34,7 +36,7 @@ public class SplashActivity extends AppCompatActivity {
                         R.id.backgroundTornado,
                         1300,
                         InterpolatorIdentifier.DECELERATE,
-                        new AlphaData(1, 0.6f)));
+                        new AlphaData(1, 0.5f)));
         animationDatas.add(
                 new AnimationData(
                         R.id.backgroundOvershoot,
@@ -45,7 +47,7 @@ public class SplashActivity extends AppCompatActivity {
         findViewById(R.id.imageTransition).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ActivityTransition.startActivity(animationDatas, SplashActivity.this, intent);
+                ActivityTransition.startActivity(animationDatas, OneActivity.this, intent);
             }
         });
     }

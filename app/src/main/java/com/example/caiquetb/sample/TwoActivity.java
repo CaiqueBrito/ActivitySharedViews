@@ -1,4 +1,4 @@
-package com.example.caiquetb.playgroundbrito;
+package com.example.caiquetb.sample;
 
 import android.animation.Animator;
 import android.os.Bundle;
@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.example.activitysharedviews.ActivityTransition;
 
-public class MainActivity extends AppCompatActivity {
+public class TwoActivity extends AppCompatActivity {
 
     boolean backPressed = false;
     private TextView textViewAnimated;
@@ -16,7 +16,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_two);
+
+        getSupportActionBar().setTitle("Activity Two");
 
         textViewAnimated = (TextView) findViewById(R.id.textview_animated);
         textViewAnimated.setAlpha(0);

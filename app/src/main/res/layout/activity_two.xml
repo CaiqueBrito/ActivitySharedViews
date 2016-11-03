@@ -12,7 +12,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:id="@+id/backgroundTornado"
-        android:background="#FF0000"
+        android:background="#000000"
         android:layout_width="250dp"
         android:layout_height="100dp">
 
@@ -22,7 +22,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
-            android:text="This can be a complex layout"
+            android:textStyle="bold"
+            android:text="This is TextView inside RelativeLayout"
             android:textSize="20sp"
             android:layout_centerInParent="true"/>
     </RelativeLayout>
@@ -31,7 +32,7 @@
         android:layout_centerInParent="true"
         android:layout_centerHorizontal="true"
         android:id="@+id/backgroundOvershoot"
-        android:background="#FFFF00"
+        android:background="#8800FF"
         android:layout_width="100dp"
         android:layout_height="100dp"/>
 

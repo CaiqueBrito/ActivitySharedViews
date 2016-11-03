@@ -1,4 +1,4 @@
-package com.example.caiquetb.playgroundbrito;
+package com.example.caiquetb.sample;
 
 import org.junit.Test;
 
