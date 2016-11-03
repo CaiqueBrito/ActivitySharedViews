@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
         textViewAnimated = (TextView) findViewById(R.id.textview_animated);
         textViewAnimated.setAlpha(0);
 
-        //just "frescura"
         backPressed = true;
 
         ActivityTransition.runEnterAnimation(this, new ActivityTransition.UnbundleViewCallback() {

@@ -40,6 +40,8 @@ import java.util.ArrayList;
 * */
 public class ActivityTransition {
 
+    private Activity mActivity;
+
     /**
      * The method will capture the list of views and write it into a intent to be recovered on the
      * destiny activity.

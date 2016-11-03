@@ -1,1 +1,1 @@
-include ':app', ':activitysharedviews'
+include ':app', ':sharedelementscompat'
