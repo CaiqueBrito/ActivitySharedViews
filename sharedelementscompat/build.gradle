@@ -1,15 +1,18 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'maven-publish'
+
+def artifactId = 'sharedlib'
+def groupId = 'com.example.activitysharedviews'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.2"
+    compileSdkVersion 28
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 24
+        minSdkVersion 21
+        targetSdkVersion 28
         versionCode 1
-        versionName "1.0"
-
+        versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
@@ -22,10 +25,36 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile 'com.android.support:appcompat-v7:24.2.1'
-    testCompile 'junit:junit:4.12'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //Support
+    implementation "com.android.support:appcompat-v7:$rootProject.ext.support_version"
+    //Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    //Junit
+    testImplementation "junit:junit:$rootProject.ext.junit_version"
+    //Espresso
+    androidTestImplementation "com.android.support.test:runner:$rootProject.ext.espresso_runner_version"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.ext.espresso_core_version"
+    //Mockito
+    testImplementation "org.mockito:mockito-core:$rootProject.ext.mockito_core_version"
+}
+
+publishing {
+    publications {
+        library(MavenPublication) {
+            setGroupId(groupId)
+            setArtifactId(artifactId)
+            version android.defaultConfig.versionName
+            artifact(bundleReleaseAar)
+        }
+    }
+}
+
+task publishToM2() {
+    dependsOn 'clean'
+    dependsOn 'build'
+    dependsOn 'publishToMavenLocal'
+    tasks.findByName('build').mustRunAfter 'clean'
+    tasks.findByName('publishToMavenLocal').mustRunAfter 'build'
 }

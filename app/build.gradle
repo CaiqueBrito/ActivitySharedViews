@@ -1,14 +1,15 @@
 apply plugin: 'com.android.application'
+apply plugin: "kotlin-android"
+apply plugin: "kotlin-android-extensions"
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.3"
+    compileSdkVersion 28
     defaultConfig {
         applicationId "com.example.caiquetb.playgroundbrito"
-        minSdkVersion 15
-        targetSdkVersion 24
+        minSdkVersion 21
+        targetSdkVersion 28
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -20,13 +21,18 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile 'com.android.support:appcompat-v7:24.2.1'
-    testCompile 'junit:junit:4.12'
+    implementation fileTree(include: ["*.jar"], dir: "libs")
 
-    compile 'com.android.support:support-v4:24.2.1'
-    compile project(path: ':sharedelementscompat')
+    //Support
+    implementation "com.android.support:appcompat-v7:$rootProject.ext.support_version"
+    //Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    //Junit
+    testImplementation "junit:junit:$rootProject.ext.junit_version"
+    //Espresso
+    androidTestImplementation "com.android.support.test:runner:$rootProject.ext.espresso_runner_version"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.ext.espresso_core_version"
+    //Mockito
+    testImplementation "org.mockito:mockito-core:$rootProject.ext.mockito_core_version"
+    implementation project(":sharedelementscompat")
 }
